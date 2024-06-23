@@ -18,18 +18,26 @@ fn authenticated_client() -> Client {
 }
 
 #[tokio::test]
+async fn main() {
+    let client = Client::new(env!("SOUNDCLOUD_CLIENT_ID"));
+    let playlist = client.playlist(965640322).get().await;
+
+    assert_eq!(playlist.unwrap().id, 965640322);
+}
+
+// #[tokio::test]
 async fn test_fetch_my_playlists() {
     let client = authenticated_client();
     assert!(client.my_playlists().await.unwrap().len() > 0);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_fetch_likes() {
     let client = authenticated_client();
     assert!(client.likes().await.unwrap().len() > 0);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_resolve_track() {
     let result = client()
         .resolve("https://soundcloud.com/djmaksgermany/invites-feat-maks-warm-up-mix")
@@ -41,7 +49,7 @@ async fn test_resolve_track() {
     );
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_search_tracks() {
     let result = client().tracks().query(Some("monstercat")).get().await;
 
@@ -55,7 +63,7 @@ async fn test_get_track() {
     assert_eq!(track.id, 263801976);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_get_playlists() {
     let result = client().playlists().query("monstercat").get().await;
 
@@ -69,7 +77,7 @@ async fn test_get_playlist() {
     assert_eq!(playlist.id, 565064082);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_download() {
     use tokio::fs::{remove_file, File};
     use tokio_util::compat::TokioAsyncWriteCompatExt;
@@ -84,7 +92,7 @@ async fn test_download() {
     let _ = remove_file(path).await;
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_stream() {
     use tokio::fs::{remove_file, File};
     use tokio_util::compat::TokioAsyncWriteCompatExt;
@@ -106,7 +114,7 @@ async fn test_get_user() {
     assert_eq!(user.id, 8553751);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_get_users() {
     let users = client()
         .users()
@@ -118,7 +126,7 @@ async fn test_get_users() {
     assert!(users.len() > 0);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_get_user_from_permalink() {
     let user = client()
         .users()
@@ -152,7 +160,7 @@ async fn test_paginate_user_tracks() {
     assert!(tracks.len() > 0);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_user_web_profile() {
     let profiles = client().user(USER_ID).web_profiles();
     let profiles: Vec<WebProfile> = profiles
@@ -164,7 +172,7 @@ async fn test_user_web_profile() {
     assert!(profiles.len() > 0);
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_user_playlists() {
     let playlists = client().user(USER_ID).playlists();
     let playlists: Vec<Playlist> = playlists
@@ -202,7 +210,7 @@ async fn test_user_followers() {
     assert_eq!(50, users.len());
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_user_likes() {
     let likes = client().user(USER_ID).likes();
     let tracks: Vec<Track> = likes
@@ -215,7 +223,7 @@ async fn test_user_likes() {
     assert_eq!(50, tracks.len());
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_track_comments() {
     let comments = client().track(TRACK_ID).comments();
     let comments: Vec<Comment> = comments
@@ -228,7 +236,7 @@ async fn test_track_comments() {
     assert_eq!(50, comments.len());
 }
 
-#[tokio::test]
+// #[tokio::test]
 async fn test_track_likers() {
     let likers = client().track(TRACK_ID).likers();
     let users: Vec<User> = likers

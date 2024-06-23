@@ -1,0 +1,7 @@
+###
+# Resolves a SoundCloud URL to its corresponding entity. This is useful for getting the ID of a track, playlist, etc.
+# @prompt url
+GET {{baseUrl}}/resolve
+    ?url={{url}}
+    ?client_id={{SOUNDCLOUD_CLIENT_ID}}
+Authorization: OAuth {{SOUNDCLOUD_AUTH_TOKEN}}

@@ -1,0 +1,13 @@
+{
+  "rest-client.previewOption": "exchange",
+  "rest-client.defaultHeaders": {
+    "Origin": "https://soundcloud.com",
+    "Referer": "https://soundcloud.com",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 Edg/114.0.1823.67"
+  },
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "https://api-v2.soundcloud.com",
+    }
+  }
+}

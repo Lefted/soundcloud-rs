@@ -1,0 +1,15 @@
+@userId = 786641908
+
+### 
+# Get a user
+GET {{baseUrl}}/users/{{userId}}
+    ?client_id={{SOUNDCLOUD_CLIENT_ID}}
+Authorization: OAuth {{SOUNDCLOUD_AUTH_TOKEN}}
+
+### 
+# Get a users playlists
+GET {{baseUrl}}/users/{{userId}}/playlists
+    ?offset=1
+    &limit=1
+    &client_id={{SOUNDCLOUD_CLIENT_ID}}
+Authorization: OAuth {{SOUNDCLOUD_AUTH_TOKEN}}

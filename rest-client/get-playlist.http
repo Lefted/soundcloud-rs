@@ -1,0 +1,6 @@
+### 
+# Get a specific playlist
+@playlistId = 965640322
+GET {{baseUrl}}/playlists/{{playlistId}}
+    ?client_id={{SOUNDCLOUD_CLIENT_ID}}
+Authorization: OAuth {{SOUNDCLOUD_AUTH_TOKEN}}
